@@ -1,0 +1,115 @@
+HQ-Router#sh run
+Building configuration...
+
+Current configuration : 1536 bytes
+!
+version 15.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname HQ-Router
+!
+!
+!
+enable secret 5 $1$mERr$9cTjUIEqNGurQiFU.ZeCi1
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+crypto isakmp policy 10
+ encr aes
+ authentication pre-share
+ group 5
+!
+crypto isakmp key VPN2026 address 10.0.0.2
+!
+!
+!
+crypto ipsec transform-set VPN-TS esp-aes esp-sha-hmac
+!
+crypto map VPN-MAP 10 ipsec-isakmp 
+ set peer 10.0.0.2
+ set transform-set VPN-TS 
+ match address 110
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface Tunnel0
+ ip address 172.16.255.1 255.255.255.252
+ mtu 1476
+ tunnel source GigabitEthernet0/0/0
+ tunnel destination 10.0.0.2
+!
+!
+interface GigabitEthernet0/0/0
+ ip address 10.0.0.1 255.255.255.252
+ duplex auto
+ speed auto
+ crypto map VPN-MAP
+!
+interface GigabitEthernet0/0/1
+ ip address 10.10.10.1 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router ospf 1
+ log-adjacency-changes
+ redistribute static subnets 
+ network 10.0.0.0 0.0.0.3 area 0
+!
+ip classless
+ip route 192.168.10.0 255.255.255.0 10.10.10.2 
+ip route 192.168.20.0 255.255.255.0 10.10.10.2 
+!
+ip flow-export version 9
+!
+!
+access-list 110 permit ip 192.168.10.0 0.0.0.255 192.168.30.0 0.0.0.255
+access-list 110 permit ip 192.168.20.0 0.0.0.255 192.168.30.0 0.0.0.255
+!
+banner motd ^CThis Router belongs to HQ! No intruders allowed :(^C
+!
+!
+!
+!
+line con 0
+ password 7 0822455D0A16
+ login
+!
+line aux 0
+!
+line vty 0 4
+ password 7 0822455D0A16
+ login
+!
+!
+!
+end
+
+
+HQ-Router# 
