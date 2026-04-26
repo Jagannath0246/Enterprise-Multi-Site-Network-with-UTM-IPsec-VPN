@@ -26,12 +26,12 @@ The network consists of two main sites connected via a `10.0.0.0/30` WAN link, o
 
 | Device | Interface / Zone | IP Address | Subnet Mask | Purpose |
 | :--- | :--- | :--- | :--- | :--- |
-| [**HQ-Router**](./HQ-Router.cfg) | G0/0/0 (WAN) | 10.0.0.1 | 255.255.255.252 | ISP / WAN Link (Crypto Map Applied) |
+| [**HQ-Router**](./HQ-Router.cfg.txt) | G0/0/0 (WAN) | 10.0.0.1 | 255.255.255.252 | ISP / WAN Link (Crypto Map Applied) |
 | | G0/0/1 (Transit) | 10.10.10.1 | 255.255.255.252 | Transit link to ASA Firewall |
-| [**ASA 5506-X**](./ASA-Firewall.cfg) | G1/1 (Outside - 0) | 10.10.10.2 | 255.255.255.252 | Default gateway to WAN |
+| [**ASA 5506-X**](./ASA-Firewall.cfg.txt) | G1/1 (Outside - 0) | 10.10.10.2 | 255.255.255.252 | Default gateway to WAN |
 | | G1/2 (Admin - 100) | 192.168.10.1 | 255.255.255.0 | Gateway for VLAN 10 |
 | | G1/3 (IT - 90) | 192.168.20.1 | 255.255.255.0 | Gateway for VLAN 20 |
-| [**Sales-Router**](./Sales-Router.cfg)| G0/0/0 (WAN) | 10.0.0.2 | 255.255.255.252 | ISP / WAN Link (Crypto Map Applied) |
+| [**Sales-Router**](./Sales-Router.cfg.txt)| G0/0/0 (WAN) | 10.0.0.2 | 255.255.255.252 | ISP / WAN Link (Crypto Map Applied) |
 | | G0/0/1 (LAN) | 192.168.30.1 | 255.255.255.0 | Gateway for VLAN 30 |
 | **PC0 (Admin)** | NIC | 192.168.10.10 | 255.255.255.0 | VLAN 10 Member |
 | **PC1 (IT)** | NIC | 192.168.20.10 | 255.255.255.0 | VLAN 20 Member |
