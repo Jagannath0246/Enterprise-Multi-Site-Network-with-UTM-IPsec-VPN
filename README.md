@@ -22,7 +22,7 @@ The network consists of two main sites connected via a `10.0.0.0/30` WAN link, o
 ![Enterprise Topology](01_Enterprise_Topology.png)
 *Figure 1: High-level architecture detailing the ASA UTM firewall at HQ and the LAN-to-LAN IPsec VPN overlay.*
 
-## 📊 Updated IP Addressing & Routing Schema
+## 📊 Complete IP Addressing & Routing Schema
 
 | Device | Interface / Zone | IP Address | Subnet Mask | Purpose |
 | :--- | :--- | :--- | :--- | :--- |
@@ -33,6 +33,9 @@ The network consists of two main sites connected via a `10.0.0.0/30` WAN link, o
 | | G1/3 (IT - 90) | 192.168.20.1 | 255.255.255.0 | Gateway for VLAN 20 |
 | **Sales-Router**| G0/0/0 (WAN) | 10.0.0.2 | 255.255.255.252 | ISP / WAN Link (Crypto Map Applied) |
 | | G0/0/1 (LAN) | 192.168.30.1 | 255.255.255.0 | Gateway for VLAN 30 |
+| **PC0 (Admin)** | NIC | 192.168.10.10 | 255.255.255.0 | VLAN 10 Member |
+| **PC1 (IT)** | NIC | 192.168.20.10 | 255.255.255.0 | VLAN 20 Member |
+| **PC2 (Sales)** | NIC | 192.168.30.10 | 255.255.255.0 | VLAN 30 Member |
 
 ---
 
